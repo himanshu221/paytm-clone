@@ -115,6 +115,14 @@ userRouter.put('/', authMiddleware, async (req, resp) => {
 
 userRouter.get('/bulk', authMiddleware, async (req, resp) => {
     const filter = req.query.filter || ""
+    const user =  await User.findOne({
+            _id: req.userId
+        })
+    if(!user){
+        return resp.status(400).json({
+            message: "User who sent the request does not exists"
+        })
+    }
     const userList = await User.find({
         $or: [
             { firstname : { $regex : filter, $options: 'i'}},

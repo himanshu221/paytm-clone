@@ -27,7 +27,7 @@ accountRouter.post('/transfer', authMiddleware, async (req, resp) => {
 
     session.startTransaction()
     const toAccount = await Account.findOne({
-        userId: req.to
+        userId: req.body.to
     }).session(session)
 
     if(!toAccount){
@@ -51,7 +51,7 @@ accountRouter.post('/transfer', authMiddleware, async (req, resp) => {
         userId: fromAccount.userId
     }, {
         $inc: {
-            balance: -amount
+            balance: -req.body.amount
         }
     }).session(session)
 
@@ -59,7 +59,7 @@ accountRouter.post('/transfer', authMiddleware, async (req, resp) => {
         userId: toAccount.userId
     }, {
         $inc: {
-            balance: +amount
+            balance: +req.body.amount
         }
     }).session(session)
 
