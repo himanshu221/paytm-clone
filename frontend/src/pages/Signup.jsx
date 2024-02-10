@@ -1,4 +1,4 @@
-import { useSetRecoilState } from "recoil"
+import { useRecoilState, useSetRecoilState } from "recoil"
 import { BottomWarning } from "../components/BottomWarning"
 import { Button } from "../components/Button"
 import { Heading } from "../components/Heading"
@@ -7,10 +7,10 @@ import {SubHeading} from "../components/SubHeading"
 import { firstName, lastName, password, username } from "../store/atoms/login"
 
 export const Signup = () => {
-    const setUsername = useSetRecoilState(username)
-    const setFirstName = useSetRecoilState(firstName)
-    const setLastName = useSetRecoilState(lastName)
-    const setPassword = useSetRecoilState(password)
+    const {username, setUsername} = useRecoilState(username)
+    const {firstname, setFirstName} = useRecoilState(firstName)
+    const {lastname, setLastName} = useRecoilState(lastName)
+    const {passwd, setPassword} = useRecoilState(password)
 
     return (
         <div className="h-screen bg-[#E3F4F4] flex justify-center items-center">
@@ -28,11 +28,13 @@ export const Signup = () => {
                 <InputBox onChange={(e) => {
                     setPassword(e.target.value)
                     }} placeholder={"Password"}/>
-                <Button label="Sign up" onClick={}/>
+                <Button label="Sign up" onClick={onClick}/>
                 <BottomWarning text="Already have an account?" link="Sign in" to="/signin"/>
             </div>
         </div>
     )
 }
 
-function 
+// function onClick() {
+//     const 
+// }
