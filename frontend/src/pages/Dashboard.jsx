@@ -1,7 +1,10 @@
-export const Dashboard = () => {
+import { Navigate, useNavigate } from "react-router-dom"
+
+export const Dashboard = ({loggedIn}) => {
     return (
-        <div className="h-screen bg-[#E3F4F4] flex justify-center items-center">
+            loggedIn ?  <div className="h-screen bg-[#E3F4F4] flex justify-center items-center">
            
-        </div>
+            </div>
+            : <Navigate to={'/signin'}/>
     )
 }

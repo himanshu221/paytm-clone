@@ -1,0 +1,1 @@
+export const backend_host = 'http://localhost:3000'

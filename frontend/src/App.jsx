@@ -4,17 +4,26 @@ import { Signin } from './pages/Signin'
 import { Dashboard } from './pages/Dashboard'
 import { SendMoney } from './pages/SendMoney'
 import { NavBar } from './components/Navbar'
-function App() {
+import { useState } from 'react'
+import { AuthWrapper } from './components/AuthWrapper'
+import { PageNotFound } from './pages/PageNotFound'
 
+function App() {
+  const [userAuth, setUserAuth] = useState({
+    loggedIn: false,
+    username: ''
+  })
+  console.log(userAuth)
   return (
     <>
-      <NavBar />
+      <NavBar userAuth={userAuth} />
       <BrowserRouter>
         <Routes>
-          <Route path='/signup' element={<Signup />}/>
-          <Route path='/signin' element={<Signin />}/>
+          <Route path='/' element={<AuthWrapper loggedIn={userAuth.loggedIn} />}></Route>
+          <Route path='/signup' element={<Signup setUserAuth={setUserAuth}/>}/>
+          <Route path='/signin' element={<Signin setUserAuth={setUserAuth} />}/>
           <Route path='/dashboard' element={<Dashboard />}/>
-          <Route path='/send' element={<SendMoney />}/>
+          <Route path='*' element={<PageNotFound />}></Route>
         </Routes>
       </BrowserRouter>
     </>
