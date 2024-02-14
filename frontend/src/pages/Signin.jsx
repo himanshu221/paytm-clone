@@ -27,7 +27,7 @@ export const Signin = ({setUserAuth}) => {
     }   
 
     return (
-        <div className="h-screen bg-[#E3F4F4] flex justify-center items-center">
+        <div className="h-screen bg-white flex justify-center items-center">
             <div className="h-[400px] w-[400px] flex flex-col items-center rounded-xl shadow-xl p-8 bg-[#C4DFDF]">
                 <Heading label="Sign in" />
                 <InputBox refer={emailInput} type="text" placeholder={"Email"}/>
