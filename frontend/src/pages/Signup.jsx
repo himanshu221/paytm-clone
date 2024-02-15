@@ -30,7 +30,7 @@ export const Signup = ({setUserAuth}) => {
         navigate('/')
     }
     return (
-        <div className="h-screen bg-white flex justify-center items-center">
+        <div className="h-screen bg-[#EEEE] flex justify-center items-center">
             <div className="h-[540px] w-[400px] flex flex-col items-center rounded-xl shadow-xl p-8 bg-[#C4DFDF]">
                 <Heading label="Sign up" />
                 <InputBox refer={firstNameInput} type="text" placeholder="First Name" />
