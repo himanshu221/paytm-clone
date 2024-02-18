@@ -41,7 +41,7 @@ export const Signin = ({setUserAuth}) => {
     return (
 
         <div className="h-screen bg-[#EEEE] flex justify-center items-center">
-            { error.errorOccured ? <PopUp message={error.message} clearPopUp={() => setError({errorOccured: false, errorMessage:''})} /> : <></> }
+            {/* { error.errorOccured ? <PopUp message={error.message} clearPopUp={() => setError({errorOccured: false, errorMessage:''})} /> : <></> } */}
             <div className="h-[400px] w-[400px] flex flex-col items-center rounded-xl shadow-xl p-8 bg-[#C4DFDF]">
                 <Heading label="Sign in" />
                 <InputBox refer={emailInput} type="text" placeholder={"Email"}/>
