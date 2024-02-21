@@ -6,6 +6,7 @@ import { backend_host } from "../config"
 
 export const Dashboard = () => {
     const [userBalance, setUserBalance] = useState(0)
+    const [users, setUsers] = useState([])
 
     useEffect(() => {
         axios.get(`${backend_host}/api/v1/account/balance`,{
@@ -16,8 +17,12 @@ export const Dashboard = () => {
             setUserBalance(res.data.balance)
         })
     },[userBalance])
+
+    useEffect(() => {
+        axios.get()
+    })
     return (
-            <div className="h-screen flex bg-[#EEEE] pt-20">
+            <div className="h-full flex bg-[#EEEE] pt-20">
                 <BalanceCard balance={userBalance} />
                 <UserCard />
             </div>
