@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom"
 
-export const AuthWrapper = ({loggedIn}) => {
+export const AuthWrapper = () => {
     return (
-        loggedIn ? <Navigate to='/dashboard' replace /> : <Navigate to='/signin' replace />
+        localStorage.getItem('token')!=null ? <Navigate to='/dashboard' replace /> : <Navigate to='/signin' replace />
     )
 }

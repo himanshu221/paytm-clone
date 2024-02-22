@@ -7,7 +7,7 @@ import axios from 'axios'
 import { backend_host } from "../config"
 import { useNavigate } from "react-router-dom"
 
-export const Signup = ({setUserAuth}) => {
+export const Signup = ({setUsername}) => {
     const navigate = useNavigate()
     const firstNameInput = useRef(null)
     const lastNameInput = useRef(null)
@@ -22,11 +22,8 @@ export const Signup = ({setUserAuth}) => {
             lastname: lastNameInput.current.value,
             password: passwordInput.current.value
         })
+        localStorage.setItem('username',emailInput.current.value)
         localStorage.setItem("token", res.data.token)
-        setUserAuth({
-            loggedIn: true,
-            username: emailInput.current.value
-        })
         navigate('/')
     }
     return (

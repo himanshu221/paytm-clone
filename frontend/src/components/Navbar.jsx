@@ -1,14 +1,25 @@
-export const NavBar = ({userAuth}) => {
+import logout from '../assets/logout.png'
+import { useNavigate } from "react-router-dom"
 
-    return <div className="bg-white w-full fixed flex justify-between items-center shadow-md py-4 px-9 z-9999">
+export const NavBar = () => {
+    const navigate = useNavigate()
+
+    function logoutfunc() {
+        localStorage.removeItem('token')
+        localStorage.removeItem('username')
+        navigate('/signin',{
+            replace: false
+        })
+    }
+return <div className="bg-white w-full fixed flex justify-between items-center shadow-md py-4 px-9 z-9999">
        <h1 className='text-2xl font-bold text-[#334155] border-2 p-2 rounded-lg border-[#334155]'>BluPay</h1>
        {
-        userAuth.loggedIn ? 
+        localStorage.getItem('username') != null ? 
             <div className="flex items-center">
                 <div className='text-xl font-bold text-[#334155]'>
-                    Hello, {userAuth.username}
+                    Hello, {localStorage.getItem('username')}
                 </div>
-                <div className="text-lg px-3 py-1 m-2 bg-[#334155] text-white rounded-full">{userAuth.username[0].toUpperCase()}</div>
+                <img className="w-12 p-2 ml-2 cursor-pointer" src={logout} alt="logout" onClick={logoutfunc}/>
             </div> :  <></>
        }
     </div>

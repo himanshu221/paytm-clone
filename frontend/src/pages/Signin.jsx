@@ -6,9 +6,8 @@ import { InputBox } from "../components/Input"
 import axios from "axios"
 import { backend_host } from "../config"
 import { useNavigate } from "react-router-dom"
-import { PopUp } from "../components/PopUp"
 
-export const Signin = ({setUserAuth}) => {
+export const Signin = () => {
     const navigate = useNavigate()
     const emailInput = useRef()
     const passwordInput = useRef()  
@@ -24,11 +23,8 @@ export const Signin = ({setUserAuth}) => {
                 username: emailInput.current.value,
                 password: passwordInput.current.value
             })
+            localStorage.setItem('username',emailInput.current.value)
             localStorage.setItem('token', res.data.token)
-            setUserAuth({
-                loggedIn: true,
-                username: emailInput.current.value
-            })
             navigate('/')
         }catch(e){
             setError({

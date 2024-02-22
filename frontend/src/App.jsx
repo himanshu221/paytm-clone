@@ -8,23 +8,16 @@ import { AuthWrapper } from './components/AuthWrapper'
 import { PageNotFound } from './pages/PageNotFound'
 
 function App() {
-  const [userAuth, setUserAuth] = useState({
-    loggedIn: false,
-    username: ''
-  })
-  console.log(userAuth)
+ 
   return (
     <>
-      <NavBar userAuth={userAuth} />
-      <BrowserRouter>
+      <NavBar />
         <Routes>
-          <Route path='/' element={<AuthWrapper loggedIn={userAuth.loggedIn} />}></Route>
-          <Route path='/signup' element={<Signup setUserAuth={setUserAuth}/>}/>
-          <Route path='/signin' element={<Signin setUserAuth={setUserAuth} />}/>
-          <Route path='/dashboard' element={<Dashboard loggedIn={userAuth.loggedIn} />}/>
-          <Route path='*' element={<PageNotFound />}></Route>
+          <Route path='/signup' element={localStorage.getItem('token')== null ?<Signup /> : <Dashboard />}/>
+          <Route path='/signin' element={localStorage.getItem('token')== null ?<Signin /> : <Dashboard />}/>
+          <Route path='/dashboard' element={<Dashboard />}/>
+          <Route path='*' element={<AuthWrapper />}></Route>
         </Routes>
-      </BrowserRouter>
     </>
   )
 }
