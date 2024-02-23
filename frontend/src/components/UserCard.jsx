@@ -18,7 +18,7 @@ export const UserCard = () => {
         })
     },[filter])
 
-    return <div className="w-full h-[650px] p-10 shadow-lg rounded-lg my-10 mr-10 bg-white">
+    return <div className="w-[85%] sm:w-[100%] h-[650px] p-10 shadow-lg rounded-lg m-10  bg-white">
             <input className='shadow-[0_0_5px_rgb(0,0,0,0.2)] p-3 rounded-lg w-[80%] outline-none' onChange={(e) => setFilter(e.target.value)} type="text" placeholder="Search Users . . ." />
             <div className="w-full h-[520px] mt-5 mb-5 overflow-y-auto">
                {

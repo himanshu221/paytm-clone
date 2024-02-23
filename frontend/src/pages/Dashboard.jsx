@@ -18,7 +18,7 @@ export const Dashboard = () => {
     },[userBalance])
 
     return (
-            <div className="h-full flex bg-[#EEEE] pt-20">
+            <div className="h-[100%] flex flex-col sm:flex-row bg-[#EEEE] pt-20">
                 <BalanceCard balance={userBalance} />
                 <UserCard />
             </div>

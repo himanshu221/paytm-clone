@@ -28,7 +28,7 @@ export const Signup = ({setUsername}) => {
     }
     return (
         <div className="h-screen bg-[#EEEE] flex justify-center items-center">
-            <div className="h-[540px] w-[400px] flex flex-col items-center rounded-xl shadow-xl p-8 bg-[#C4DFDF]">
+            <div className="h-[540px] w-[400px] flex flex-col items-center rounded-xl shadow-xl p-8 bg-white">
                 <Heading label="Sign up" />
                 <InputBox refer={firstNameInput} type="text" placeholder="First Name" />
                 <InputBox refer={lastNameInput} type="text" placeholder="Last Name" />
