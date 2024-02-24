@@ -3,9 +3,7 @@ import { Signup } from './pages/Signup'
 import { Signin } from './pages/Signin'
 import { Dashboard } from './pages/Dashboard'
 import { NavBar } from './components/Navbar'
-import { useState } from 'react'
 import { AuthWrapper } from './components/AuthWrapper'
-import { PageNotFound } from './pages/PageNotFound'
 
 function App() {
  

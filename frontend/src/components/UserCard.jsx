@@ -4,7 +4,7 @@ import { backend_host } from "../config"
 import { userSignInSchema } from "../../../backend/validation/user"
 import axios from "axios"
 
-export const UserCard = () => {
+export const UserCard = (props) => {
     const [users, setUsers] = useState([]) 
     const [filter, setFilter] = useState("")
 
@@ -23,7 +23,8 @@ export const UserCard = () => {
             <div className="w-full h-[520px] mt-5 mb-5 overflow-y-auto">
                {
                 users.map((user,ind) => {
-                    return  <Friend key={ind} firstname={user.firstname} lastname={user.lastname} />
+                    console.log(user._id)
+                    return  <Friend key={ind} firstname={user.firstname} lastname={user.lastname} id={user._id} setShowTransfer={props.setShowTransfer} setTransferUser={props.setTransferUser}/>
                })}
             </div>
     </div>

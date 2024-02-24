@@ -33,7 +33,7 @@ accountRouter.post('/transfer', authMiddleware, async (req, resp) => {
     if(!toAccount){
         await session.abortTransaction()
         return resp.status(400).json({
-            message: "Inavalid account provided"
+            message: "Invalid account provided"
         })
     }
     const fromAccount = await Account.findOne({
