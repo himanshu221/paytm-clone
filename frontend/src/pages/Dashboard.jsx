@@ -22,7 +22,7 @@ export const Dashboard = () => {
         }).then(res => {
             setUserBalance(res.data.balance)
         })
-    },[userBalance, showTranfer])
+    },[showTranfer])
 
     return (
             <div className="h-[100%] flex flex-col sm:flex-row bg-[#EEEE] pt-20">

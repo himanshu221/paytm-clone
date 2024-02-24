@@ -4,6 +4,7 @@ import { Signin } from './pages/Signin'
 import { Dashboard } from './pages/Dashboard'
 import { NavBar } from './components/Navbar'
 import { AuthWrapper } from './components/AuthWrapper'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
  

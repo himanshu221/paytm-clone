@@ -6,38 +6,41 @@ import { InputBox } from "../components/Input"
 import axios from "axios"
 import { backend_host } from "../config"
 import { useNavigate } from "react-router-dom"
+import toast, { Toaster } from "react-hot-toast"
 
 export const Signin = () => {
     const navigate = useNavigate()
     const emailInput = useRef()
-    const passwordInput = useRef()  
-    const [error, setError] = useState({
-        errorOccured: false,
-        errorMessage: ''
-    })
+    const passwordInput = useRef()
 
-    async function onClick() {
-        try{
-            const res = await axios.post(`${backend_host}/api/v1/user/signin`,
+    function onClick() {
+            const promise = axios.post(`${backend_host}/api/v1/user/signin`,
             {
                 username: emailInput.current.value,
                 password: passwordInput.current.value
+            }).then((res) => {
+                localStorage.setItem('username',emailInput.current.value)
+                localStorage.setItem('token', res.data.token)
+                navigate('/')
             })
-            localStorage.setItem('username',emailInput.current.value)
-            localStorage.setItem('token', res.data.token)
-            navigate('/')
-        }catch(e){
-            setError({
-                errorOccured: true,
-                errorMessage: e.response.data.message
-            })
-        }
+            
+            toast.promise(promise,{
+                error: (err) => err.response.data.message,
+              },{
+                style: {
+                    minWidth: '250px',
+                    boxShadow: '0 0 5px rgba(0,0,0,0.3)'
+                },
+                error: {
+                  duration: 2000,
+                },
+              }
+            )
     }   
 
     return (
 
         <div className="h-screen bg-[#EEEE] flex justify-center items-center">
-            {/* { error.errorOccured ? <PopUp message={error.message} clearPopUp={() => setError({errorOccured: false, errorMessage:''})} /> : <></> } */}
             <div className="h-[400px] w-[400px] flex flex-col items-center rounded-xl shadow-xl p-8 bg-white">
                 <Heading label="Sign in" />
                 <InputBox refer={emailInput} type="text" placeholder={"Email"}/>
@@ -45,6 +48,7 @@ export const Signin = () => {
                 <Button label="Sign in" onClick={onClick} />
                 <BottomWarning text="Don't have an account?" link="Sign up" to="/signup"/>
             </div>
+            <Toaster />
         </div>
     )
 }

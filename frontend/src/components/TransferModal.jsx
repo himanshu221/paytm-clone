@@ -3,6 +3,7 @@ import { Button } from "./Button"
 import { Heading } from "./Heading"
 import { backend_host } from "../config"
 import { useRef } from "react"
+import toast, { Toaster } from "react-hot-toast"
 
 export const TransferModal = (props) => {
     const inputRef = useRef()
@@ -12,9 +13,8 @@ export const TransferModal = (props) => {
         if(e.target == overlay.current)
             props.setShowTransfer(false)
     }
-    async function handleClick() {
-        console.log(props.id)
-        await axios.post(`${backend_host}/api/v1/account/transfer`,{
+    function handleClick() {
+        const promise = axios.post(`${backend_host}/api/v1/account/transfer`,{
             amount: parseInt(inputRef.current.value),
             to: props.tranferUser.id
         },{
@@ -22,6 +22,19 @@ export const TransferModal = (props) => {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
             }
         })
+
+        toast.promise(promise,{
+            error: (err) => err.response.data.message,
+          },{
+            style: {
+                minWidth: '250px',
+                boxShadow: '0 0 5px rgba(0,0,0,0.3)'
+            },
+            error: {
+              duration: 2000,
+            },
+          }
+        )
         props.setShowTransfer(false)
     }
     return <div ref={overlay} onClick={handleModalClose} className="fixed z-10 flex justify-center items-center w-[100%] h-[100%] top-0 right-0 left-0 bottom-0 bg-black/50">
@@ -53,5 +66,6 @@ export const TransferModal = (props) => {
                 <Button label="Initiate Transfer" onClick={handleClick} />
             </div>
         </div>
+        <Toaster />
     </div>
 }
