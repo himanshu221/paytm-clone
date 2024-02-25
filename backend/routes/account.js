@@ -36,11 +36,12 @@ accountRouter.post('/transfer', authMiddleware, async (req, resp) => {
             message: "Invalid account provided"
         })
     }
+
     const fromAccount = await Account.findOne({
         userId: req.userId
     }).session(session)
 
-    if(!fromAccount || fromAccount.balance < req.amount){
+    if(!fromAccount || fromAccount.balance < req.body.amount){
         await session.abortTransaction()
         return resp.status(400).json({
             message: "Insufficient funds"

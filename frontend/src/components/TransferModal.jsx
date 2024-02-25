@@ -21,10 +21,13 @@ export const TransferModal = (props) => {
             headers : {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
             }
+        }).then(() => {
+            props.setShowTransfer(false)
         })
 
         toast.promise(promise,{
             error: (err) => err.response.data.message,
+            success: () => "Transfer Successful"
           },{
             style: {
                 minWidth: '250px',
@@ -35,7 +38,6 @@ export const TransferModal = (props) => {
             },
           }
         )
-        props.setShowTransfer(false)
     }
     return <div ref={overlay} onClick={handleModalClose} className="fixed z-10 flex justify-center items-center w-[100%] h-[100%] top-0 right-0 left-0 bottom-0 bg-black/50">
         <div className="h-[400px] w-[350px] bg-white rounded-lg shadow-lg p-4">
